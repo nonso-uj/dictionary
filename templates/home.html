@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+  <title>Dictionary App</title>
+{% endblock %}
+
+
+{% block active %}
+class = "active"
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+      <div class="col-sm-6" id="pad">
+
+        <h1>The Dictionary App</h1>
+
+        <div class="row" id="first">
+
+          <div class="col-sm-6">
+            <form action="{{ url_for('home') }}" method="post">
+              <div class="form-group">
+    
+                <label for="word">Word:</label>
+                <input type="text" name="word" id="word" class="form-control" placeholder="Type in word here...">
+    
+                <button type="submit" value="submit" class="btn btn-primary btn-lg btn-block">
+                  Submit
+                </button>
+    
+              </div>
+            </form>
+          </div>
+            
+          <div class="col-sm-6">
+      
+              <form action="#">
+                <label for="meaning">Meaning:</label>
+                <textarea name="meaning" id="meaning" cols="30" rows="10" class="form-control" disabled>
+                  {{ user_response }}
+                </textarea>
+              </form>
+              
+          </div>
+        </div>
+      </div>
+    
+    
+      
+      <div class="col-sm-6">
+        <img id="akame" src="{{ url_for('static', filename='images/dashboard.png') }}" alt="Akame!!!" class="img-responsive">
+      </div>
+
+  </div>
+
+
+    
+</div>
+  
+  
+  
+{% endblock %}
+    
