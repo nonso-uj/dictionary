@@ -1,20 +1,25 @@
 from flask import Flask, render_template, url_for, request, flash, current_app
 # from flaskext.mysql import MySQL
 # import pymysql.cursors
-import json
-import os
-import psycopg2
+import json, os, psycopg2
+from whitenoise import WhiteNoise
+from decouple import config
+
+
 
 app = Flask(__name__)
+app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
+app.secret_key = config('SECRET_KEY')
 
-app.secret_key = 'secret'
+
 
 def get_db_connection():
   conn = psycopg2.connect(
-    host="localhost",
-    database="flaskdb",
-    user=os.environ['DB_USERNAME'],
-    password=os.environ['DB_PASSWORD']
+    host=config('DB_HOST'),
+    database=config('DB_NAME'),
+    user=config('DB_USERNAME'),
+    password=config('DB_PASSWORD'),
+    port=config('DB_PORT')
   )
   return conn
 # cur = conn.cursor()
@@ -159,29 +164,7 @@ def add_logo():
 
 
 if __name__ == "__main__":
-  app.run(debug = True)
+  app.run()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# app.secret_key = 'secret'
-# app.config['MYSQL_DATABASE_HOST'] ='localhost'
-# app.config['MYSQL_DATABASE_DB'] ='dictionary'
-# app.config['MYSQL_DATABASE_USER'] ='user'
-# app.config['MYSQL_DATABASE_PASSWORD'] ='root'
-
-# mysql = MySQL(app, cursorclass=pymysql.cursors.DictCursor)
