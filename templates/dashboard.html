@@ -72,30 +72,30 @@ class = "active"
           {% for word in words %}
           <tr>
             <td> {{ loop.index }} </td>
-            <td class="word-word">{{ word['word'] }}</td>
-            <td class="word-meaning">{{ word['meaning'] }}</td>
+            <td class="word-word">{{ word[1] }}</td>
+            <td class="word-meaning">{{ word[2] }}</td>
 
             <form action="javascript:0" class="update-form">
               <td class="edit-word">
-                <input type="text" class="form-control" value="{{ word['word'] }}">
+                <input type="text" class="form-control" value="{{ word[1] }}">
               </td>
               <td class="edit-meaning">
-                <textarea class="form-control">{{ word['meaning'] }}</textarea>
+                <textarea class="form-control">{{ word[2] }}</textarea>
               </td>
               <td>
-                <button id="{{ word['id'] }}" class="btn btn-md btn-primary btn-block submit" type="submit"> submit </button>
+                <button id="{{ word[0] }}" class="btn btn-md btn-primary btn-block submit" type="submit"> submit </button>
               </td>
               
             </form>
 
             <td>
-              <button id="{{ word['id'] }}" class="btn btn-md btn-warning cancel"> cancel </button>
+              <button id="{{ word[0] }}" class="btn btn-md btn-warning cancel"> cancel </button>
             </td>
             <td>
-              <button id="{{ word['id'] }}" class="btn btn-md btn-success edit"> edit </button>
+              <button id="{{ word[0] }}" class="btn btn-md btn-success edit"> edit </button>
             </td>
             <td>
-              <button id="{{ word['id'] }}" class="btn btn-md btn-danger delete"> delete </button>
+              <button id="{{ word[0] }}" class="btn btn-md btn-danger delete"> delete </button>
             </td>
             
           </tr>
