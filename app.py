@@ -22,7 +22,7 @@ def get_db_connection():
     port=config('DB_PORT')
   )
   return conn
-# cur = conn.cursor()
+cur = conn.cursor()
 
 
 
@@ -40,7 +40,7 @@ def home():
       flash('You did not enter a valid word, please try again.', 'flash_error')
     else:
       # conn = mysql.get_db()
-      print('user_input', user_input)
+      # print('user_input', user_input)
       conn = get_db_connection()
       cur= conn.cursor()
       cur.execute('select meaning from dictionary where UPPER(word) = %s', (user_input.upper(), ))
@@ -164,7 +164,7 @@ def add_logo():
 
 
 if __name__ == "__main__":
-  app.run()
+  app.run(debug=True)
 
 
 
