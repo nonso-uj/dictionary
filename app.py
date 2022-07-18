@@ -22,7 +22,6 @@ def get_db_connection():
     port=config('DB_PORT')
   )
   return conn
-cur = conn.cursor()
 
 
 
@@ -39,8 +38,6 @@ def home():
     if user_input == '':
       flash('You did not enter a valid word, please try again.', 'flash_error')
     else:
-      # conn = mysql.get_db()
-      # print('user_input', user_input)
       conn = get_db_connection()
       cur= conn.cursor()
       cur.execute('select meaning from dictionary where UPPER(word) = %s', (user_input.upper(), ))
@@ -49,7 +46,6 @@ def home():
       conn.close()
       if (len(rv) > 0):
         user_response = rv[0][0]
-        # ['meaning']
       else:
         flash("Word not found in the dictionary, please try another", 'flash_error')
 
@@ -60,7 +56,6 @@ def home():
 
 @app.route('/dashboard')
 def dashboard():
-  # conn = mysql.get_db()
   conn = get_db_connection()
   cur = conn.cursor()
   cur.execute('select * from dictionary order by id')
@@ -83,7 +78,6 @@ def add_word():
   if word =='' or meaning == '':
     flash('Please fill in the required fields!!', 'flash_error')
   else:
-    # conn = mysql.get_db()
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('insert into dictionary(word, meaning) VALUES (%s, %s)', (word, meaning))
@@ -103,7 +97,6 @@ def add_word():
 @app.route('/word/<id>/delete', methods = ['POST'])
 def delete_word(id):
   word_id = id
-  # conn = mysql.get_db()
   conn = get_db_connection()
   cur = conn.cursor()
   cur.execute('delete from dictionary where id = %s', (word_id))
@@ -131,7 +124,6 @@ def edit_word(id):
   if word =='' or meaning == '':
     flash('Please fill in the required fields!!', 'flash_error')
   else:
-    # conn = mysql.get_db()
     print(word, meaning, word_id)
     conn = get_db_connection()
     cur = conn.cursor()
