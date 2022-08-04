@@ -12,7 +12,6 @@ app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
 app.secret_key = config('SECRET_KEY')
 
 
-
 def get_db_connection():
   conn = psycopg2.connect(
     host=config('DB_HOST'),
@@ -154,9 +153,10 @@ def add_logo():
   return 'Success'
 
 
+# DEBUG = config('DEBUG', cast=bool)
 
 if __name__ == "__main__":
-  app.run()
+  app.run(debug = config('DEBUG', cast=bool))
 
 
 

@@ -19,7 +19,7 @@ class = "active"
 
     <div id="clicks" class="col-12 col-md-4">
         <a href="#" class="side-active" id="uno"> All Words</a>
-        <a href="#" id="deux">Add Words</a>
+        <a href="#" id="deux">Add Word</a>
 
         <form action="javascript:0" id="word-form">
 
@@ -31,11 +31,14 @@ class = "active"
           <div class="form-group">
             <label for="meaning">Meaning: </label>
             <textarea name="meaning" id="meaning" class="form-control" cols="10" rows="6" placeholder="Input the meaning of the word here"></textarea>
-
-            <button id="submit" type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
-
-            <button type="button" id="cancel" class="btn btn-lg btn-warning btn-block">Cancel</button>
           </div>
+          
+          <div class="form-group">
+            <button id="submit" type="submit" class="btn btn-lg btn-primary">Submit</button>
+
+            <button type="button" id="cancel" class="btn btn-lg btn-warning">Cancel</button>
+          </div>
+            
           
         </form>
 
@@ -49,9 +52,9 @@ class = "active"
               <input type="file" class="form-control" name="logo" id="logo" accept="image/*" required>
             </div>
             <div class="form-group">
-              <button id="submit" type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+              <button id="submit" type="submit" class="btn btn-lg btn-primary">Submit</button>
   
-              <button type="button" id="logo-cancel" class="btn btn-lg btn-warning btn-block">Cancel</button>
+              <button type="button" id="logo-cancel" class="btn btn-lg btn-warning">Cancel</button>
             </div>
           </form>
         </div>
@@ -60,55 +63,59 @@ class = "active"
 
 
 
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8" id="word-tbl">
       <h1 id="ttl">Word Index</h1>
-      <table class="table" id="tbl">
-        <thead>
-          <th scope="col">SN</th>
-          <th scope="col">Word</th>
-          <th scope="col">Meaning</th>
-        </thead>
-        <tbody>
-          {% for word in words %}
-          <tr>
-            <td> {{ loop.index }} </td>
-            <td class="word-word">{{ word[1] }}</td>
-            <td class="word-meaning">{{ word[2] }}</td>
-
-            <form action="javascript:0" class="update-form">
-              <td class="edit-word">
-                <input type="text" class="form-control" value="{{ word[1] }}">
-              </td>
-              <td class="edit-meaning">
-                <textarea class="form-control">{{ word[2] }}</textarea>
+      <div class="table-responsive w-100">
+        <table class="table" id="tbl">
+          <thead>
+            <th scope="col">SN</th>
+            <th scope="col">Word</th>
+            <th scope="col">Meaning</th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            {% for word in words %}
+            <tr>
+              <td> {{ loop.index }} </td>
+              <td class="word-word">{{ word[1] }}</td>
+              <td class="word-meaning" colspan="4">{{ word[2] }}</td>
+  
+              <form action="javascript:0" class="update-form">
+                <td class="edit-word">
+                  <input type="text" class="form-control" value="{{ word[1] }}">
+                </td>
+                <td class="edit-meaning">
+                  <textarea class="form-control">{{ word[2] }}</textarea>
+                </td>
+                <td>
+                  <button id="{{ word[0] }}" class="btn btn-md btn-primary btn-block submit" type="submit"> submit </button>
+                </td>
+                
+              </form>
+  
+              <td>
+                <button id="{{ word[0] }}" class="btn btn-md btn-warning cancel"> cancel </button>
               </td>
               <td>
-                <button id="{{ word[0] }}" class="btn btn-md btn-primary btn-block submit" type="submit"> submit </button>
+                <button id="{{ word[0] }}" class="btn btn-md btn-success edit"> edit </button>
+              </td>
+              <td>
+                <button id="{{ word[0] }}" class="btn btn-md btn-danger delete"> delete </button>
               </td>
               
-            </form>
-
-            <td>
-              <button id="{{ word[0] }}" class="btn btn-md btn-warning cancel"> cancel </button>
-            </td>
-            <td>
-              <button id="{{ word[0] }}" class="btn btn-md btn-success edit"> edit </button>
-            </td>
-            <td>
-              <button id="{{ word[0] }}" class="btn btn-md btn-danger delete"> delete </button>
-            </td>
-            
-          </tr>
-
-          {% else %}
-
-          <tr>
-            <td colspan="3">Dictionary has no words</td>
-          </tr>
-
-          {% endfor %}
-        </tbody>
-      </table>
+            </tr>
+  
+            {% else %}
+  
+            <tr>
+              <td colspan="3">Dictionary has no words</td>
+            </tr>
+  
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>

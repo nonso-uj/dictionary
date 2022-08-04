@@ -27,9 +27,6 @@ body {
 /* .row{
 } */
 
-#pad{
-  padding-top: 8rem;
-}
 
 #first{
   background-color: #beb7ff;
@@ -56,10 +53,15 @@ label{
   margin: auto;
   margin-top: 15rem;
 }
+
 /* #submitWord{} */
 
 #ttl{
   margin-bottom: 3rem;
+  /* text-decoration: underline #000000 1px; */
+  border: solid;
+  border-color: #000000;
+  border-width: 0px 0px 0px 4px;
 }
 
 #move{
@@ -67,7 +69,7 @@ label{
 }
 
 #clicks{
-  padding-top: 16rem;
+  padding-top: 4rem;
   /* border: solid;
   border-color: #000000;
   border-width: 0px 4px 0px 0px; */
@@ -106,4 +108,42 @@ label{
 #logo-img{
   width: 30px;
   height: auto;
+}
+
+#home-img{
+  display: inline-block;
+}
+
+.cover{
+  margin: 2rem 1rem;
+  padding-bottom: 3rem;
+}
+
+.word-meaning{
+  white-space: normal !important;
+  /* word-wrap: break-word; */
+}
+
+#word-tbl{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#pad{
+  padding-top: 8rem;
+}
+
+@media (max-width: 768px){
+  #home-img{
+    display: none;
+  }
+  
+  #clicks{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  #pad{
+    padding-top: 2rem;
+  }
 }
